@@ -1,0 +1,24 @@
+{% extends "pages/Base.html" %}
+
+{% block tieude %}
+Thong bao chi tiet
+{% endblock %}
+
+{% block noidung %}
+<table>
+    <tr>
+        <td>
+            <img src="{{thongbao.LoaiTB.AnhTB.url}}" width="40px" height="40px"/>
+        </td>
+        <td>
+            <h4>{{thongbao.TieuDeTB}}</h4>
+            <h8>{{thongbao.NgayTB}}</h8>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            {{thongbao.NoiDungTB}}
+        </td>
+    </tr>
+</table>
+{% endblock %}

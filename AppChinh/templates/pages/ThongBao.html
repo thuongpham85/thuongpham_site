@@ -1,0 +1,34 @@
+{% extends 'pages/Base.html' %}
+
+{% block tieude%}
+Thong bao
+{% endblock %}
+
+{% block noidung %}
+{% for tb in tbs %}
+    <p><img src="{{tb.LoaiTB.AnhTB.url}}" width="40px" height="40px"/>
+        <a href = "{% url 'tbct' tb.id %}">{{tb.TieuDeTB}}</a>
+    </p>
+{% endfor %}
+<br/>
+<div class="pagination">
+        {% if page_obj.has_previous %}
+            <a href="{{request.path}}?page={{page_obj.previous_page_number}}">Ngay truoc</a>
+        {% endif %}
+        <a href="{{request.path}}?page=1">Trang dau</a>
+
+        {% for i in page_obj.paginator.page_range %}
+            {% if page_obj.number == i %}
+                <a href="{{request.path}}?page={{i}}" class="active">{{i}}</a>
+            {% else %}
+                <a href="{{request.path}}?page={{i}}">{{i}}</a>
+            {% endif %}
+        {% endfor %}
+
+        <a href="{{request.path}}?page={{page_obj.paginator.num_pages}}">Trang cuoi</a>
+        {% if page_obj.has_next %}
+            <a href="{{request.path}}?page={{page_obj.next_page_number}}">Tiep theo</a>
+        {% endif %}
+</div>
+
+{% endblock %}

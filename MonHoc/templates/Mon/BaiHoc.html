@@ -1,0 +1,39 @@
+{% extends "pages/Base.html" %}
+
+{% block tieude %}
+Noi dung
+{% endblock %}
+
+{% block noidung %}
+
+<center><h2>{{bh.NoiDung}}</h2></center>
+<embed src="{{bh.NoiDung.url}}" width="100%" height="400" />
+
+
+{% if request.session.username %}
+    <form action="{% url 'baihoc' bh.mon.id bh.id%}" method="POST">
+        {% csrf_token %}
+        <p><label>Binh luan:</label></p>
+        {{form.NoiDungBL}}
+        <br/>
+        <input type="submit" value="Binh luan"/>
+    </form>
+{% endif %}
+
+{% for bl in bh.baihocbl.all %}<!--baihocbl: related-name khai bao trong model BinhLuanBH tai file models.py-->
+    
+    
+    <table>
+        <tr>
+            <td>
+                <p><strong>{{bl.nguoidung.username}}</strong></p>
+                <p style="font-size: 10px;">{{bl.NgayBL}}</p>
+            </td>
+            <td>
+                <span>{{bl.NoiDungBL|linebreaks}}</span>
+            </td>
+        </tr>
+    </table>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "pages/Base.html" %}
+
+{% block tieude %}
+Trang chu
+{% endblock %}
+
+{% block noidung %}
+Thông báo mới nhất:
+{% for tb in TB %}
+<table>
+    <tr>
+        <td>
+            <img src="{{tb.LoaiTB.AnhTB.url}}" width="40px" height="40px"/>
+        </td>
+        <td>
+            <h4>{{tb.TieuDeTB}}</h4>
+            <h8>{{tb.NgayTB}}</h8>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            {{tb.NoiDungTB}}
+        </td>
+    </tr>
+</table>
+{% endfor %}
+{% endblock %}

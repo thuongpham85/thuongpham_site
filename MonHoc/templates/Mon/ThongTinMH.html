@@ -1,0 +1,30 @@
+{% extends "pages/Base.html" %}
+
+{% block tieude %}
+Mon hoc
+{% endblock %}
+
+{% block noidung %}
+<h2><center>{{mh.TenMon}}</center></h2>
+<p>Duoc giang day vao hoc ky {{mh.HocKy}} cua nam {{mh.Nam}}</p>
+<a href="GioiThieuMH.html">Nhan vao</a>
+<!--    <div id="vd"></div>
+{% load static %}
+<script src = "{% static 'js/jquery.min.js' %}"></script>
+<script src = "{% static 'js/pdfobject.min.js' %}"></script>
+<script>
+    PDFObject.embed('{{mh.GioiThieu.url}}', "#vd");
+</script>-->
+<div>
+    
+    <center><h4>Danh sach cac bai hoc</h4>
+    <table>{% for i in bhs %}
+        <tr>
+            <td style="width: 150px">{{i.TenBai}}</td>
+            <td style="width: 150px"><a href="Bai_{{i.id}}">Xem bai hoc</a></td>
+        </tr>{% endfor %}
+    </table></center>
+
+    
+</div>
+{% endblock %}

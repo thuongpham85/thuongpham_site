@@ -1,0 +1,33 @@
+{% extends "pages/Base.html" %}
+
+{% block tieude %}
+Lien he
+{% endblock %}
+
+{% block noidung %}
+    <form action="." method="POST">
+        {% csrf_token %}
+
+        <table>
+            <tr>
+                <td><label>Ten tai khoan</label></td>
+                <td>{{form.username}}</td>
+            </tr>
+            <tr>
+                <td><label>Mat khau</label></td>
+                <td>{{form.password1}}</td>
+            </tr>
+            <tr>
+                <td><label>Nhap lai mat khau</label></td>
+                <td>{{form.password2}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Dang ky"/>
+                    <input type="hidden" name="next" value="/"/>
+                </td>
+            </tr>
+            
+        </table>
+    </form>
+{% endblock %}

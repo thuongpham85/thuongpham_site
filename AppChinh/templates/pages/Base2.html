@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}" type="text/css" />
+    <!--<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ek+Mukta">-->
+    <link rel="stylesheet" href="{% static 'tuTao.css' %}" type="text/css" />
+    <title>{% block tieude %}{% endblock %}</title>
+    
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="navbar fixed-top" id="header" >
+            <div class="col-sm-2">
+                <center>
+                    <h3>Thuong Pham</h3>
+                    <img src="{% static 'muoi.jpg' %}" width="10%" height="10%"/>
+                </center>
+            </div>
+            <div class="col-sm-9">
+                <center><h1>Trang web hoc tap</h1></center>
+            </div>
+            <div class="col-sm-1">
+                {% if request.session.username %}<!--cau truc su dung: request.session.ten_key-->
+                    <p>Xin chao {{request.session.username}}</p>
+                    <p><a href="{% url 'Logout' %}">Dang xuat</a></p>
+                {% else %}
+                    <p><a href="{% url 'Dangky' %}">Dang ky</a>|<a href="{% url 'Dangnhap' %}">Dang nhap</a></p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class = "col-sm-2">
+                <div class="bs-slidebar">
+                    <div id="menu">
+                        <ul class="nav flex-column">
+                            <li><a href="/">Trang chu</a></li>
+                            <li><a href="/MonHoc" >Mon hoc</a>
+                                <ul class="nav fex-column" id="sub-menu">
+                                    {% for i in dsmon %}
+                                    <li><a href="/MonHoc/{{i.id}}">{{i.TenMon}}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            <li><a href="/lienhe">Lien he</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-10">
+                <div id="content">
+                    {% block noidung %}
+                    {% endblock %}    
+                </div>
+                <div id="footer">
+                    <center><a href="">Facebook</a>|<a href="">Gmail</a></center>
+                </div>      
+            </div>
+        </div>
+    </div>
+</body>
+</html>

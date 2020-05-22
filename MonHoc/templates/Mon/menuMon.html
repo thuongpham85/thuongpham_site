@@ -1,0 +1,11 @@
+{% extends "pages/Base.html" %}
+
+{% block tieude %}
+Danh sach mon hoc
+{% endblock %}
+
+{% block noidung %}
+    {% for mon in DSMon %}
+     <h4>{{mon.MaMon}},{{mon.TenMon}}</h4>
+    {% endfor %}
+{% endblock %}
