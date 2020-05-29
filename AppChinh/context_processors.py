@@ -5,5 +5,5 @@ from .models import ThongBao
 
 def layThongTin(request):
     dsmon = Mon.objects.all()
-    tbMoiNhat = ThongBao.objects.all().order_by('-NgayTB')[:2]
+    tbMoiNhat = ThongBao.objects.all().order_by('-NgayTB')[:5]
     return {'dsmon': dsmon, 'tb':tbMoiNhat}

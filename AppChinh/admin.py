@@ -3,7 +3,7 @@ from .models import NguoiDung, LoaiThongBao, ThongBao
 
 # Register your models here.
 class NguoiDungAdmin(admin.ModelAdmin):
-    list_display = ['username','password']
+    list_display = ['username','password', 'password_MaHoa']
 
 class LoaiTBAdmin(admin.ModelAdmin):
     list_display=['LoaiTB','AnhTB']

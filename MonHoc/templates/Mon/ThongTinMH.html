@@ -1,27 +1,27 @@
 {% extends "pages/Base.html" %}
 
 {% block tieude %}
-Mon hoc
+Môn học
 {% endblock %}
 
 {% block noidung %}
 <h2><center>{{mh.TenMon}}</center></h2>
-<p>Duoc giang day vao hoc ky {{mh.HocKy}} cua nam {{mh.Nam}}</p>
-<a href="GioiThieuMH.html">Nhan vao</a>
-<!--    <div id="vd"></div>
-{% load static %}
-<script src = "{% static 'js/jquery.min.js' %}"></script>
-<script src = "{% static 'js/pdfobject.min.js' %}"></script>
-<script>
-    PDFObject.embed('{{mh.GioiThieu.url}}', "#vd");
-</script>-->
+<p>Môn học được giảng dạy cho bậc Đại học chuyên ngành Công nghệ thông tin vào học kỳ: {{mh.HocKy}} của năm: {{mh.Nam}}</p>
+<!--<a href="GioiThieuMH.html">Nhan vao</a>-->
+{% if mh.GioiThieu.name == "No file" %}
+    <p>Hiện tại chưa có phần giới thiệu cho môn học này</p>
+{% else %}
+    <p>Để hiểu rõ hơn về nội dung và cách học trong môn này, mời bạn <a href="GioiThieuMH.html">Nhấn vào</a></p>
+{% endif %}
+
+
 <div>
     
-    <center><h4>Danh sach cac bai hoc</h4>
+    <center><h4>Danh sách các bài học:</h4>
     <table>{% for i in bhs %}
         <tr>
-            <td style="width: 150px">{{i.TenBai}}</td>
-            <td style="width: 150px"><a href="Bai_{{i.id}}">Xem bai hoc</a></td>
+            <td style="width: fit-content">{{i.TenBai}}</td>
+            <td style="width: 150px"><a href="Bai_{{i.id}}">Xem bài học</a></td>
         </tr>{% endfor %}
     </table></center>
 

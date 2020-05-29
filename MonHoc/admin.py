@@ -6,7 +6,7 @@ from .models import BaiHoc
 class BaiHocInLine(admin.StackedInline):
     model = BaiHoc
 class MonAdmin(admin.ModelAdmin):
-    list_display = ['MaMon','TenMon']
+    list_display = ['id','MaMon','TenMon']
     inlines = [BaiHocInLine]
 
 admin.site.register(Mon, MonAdmin)

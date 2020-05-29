@@ -1,33 +1,51 @@
 {% extends "pages/Base.html" %}
 
 {% block tieude %}
-Lien he
+Đăng ký
 {% endblock %}
 
 {% block noidung %}
     <form action="." method="POST">
         {% csrf_token %}
-
+        <!--{% for key, value in form.errors.items %}
+            {{value}}
+        {% endfor %}-->
+        <p><b>Đăng ký thành viên trang web!</b></p> 
         <table>
             <tr>
-                <td><label>Ten tai khoan</label></td>
-                <td>{{form.username}}</td>
+                <td><label>Tên tài khoản</label></td>
+                <td>{{form.username}}<label style="color: red;">  *   </label></td>
+                <td style="color: red;">
+                    {% if "username" in form.errors.keys %}
+                        {{form.username.errors}}
+                    {% endif %}
+                </td>
             </tr>
             <tr>
-                <td><label>Mat khau</label></td>
-                <td>{{form.password1}}</td>
+                <td><label>Mật khẩu</label></td>
+                <td>{{form.password1}}<label style="color: red;">  *   </label></td>
+                <td style="color: red;">
+                    {% if "password1" in form.errors.keys %}
+                        {{form.password1.errors }}
+                    {% endif %}
+                </td>
             </tr>
             <tr>
-                <td><label>Nhap lai mat khau</label></td>
-                <td>{{form.password2}}</td>
+                <td><label>Nhập lại mật khẩu</label></td>
+                <td>{{form.password2}}<label style="color: red;">  *   </label></td>
+                <td style="color: red;">
+                    {% if "password2" in form.errors.keys %}
+                        {{form.password2.errors }}
+                    {% endif %}
+                </td>
             </tr>
             <tr>
                 <td>
-                    <input type="submit" value="Dang ky"/>
+                    <input type="submit" value="Đăng ký"/>
                     <input type="hidden" name="next" value="/"/>
                 </td>
             </tr>
-            
+ 
         </table>
     </form>
 {% endblock %}

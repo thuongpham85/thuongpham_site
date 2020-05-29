@@ -1,7 +1,7 @@
 {% extends 'pages/Base.html' %}
 
 {% block tieude%}
-Thong bao
+Thông báo
 {% endblock %}
 
 {% block noidung %}
@@ -13,9 +13,9 @@ Thong bao
 <br/>
 <div class="pagination">
         {% if page_obj.has_previous %}
-            <a href="{{request.path}}?page={{page_obj.previous_page_number}}">Ngay truoc</a>
+            <a href="{{request.path}}?page={{page_obj.previous_page_number}}">Ngay trước</a>
         {% endif %}
-        <a href="{{request.path}}?page=1">Trang dau</a>
+        <a href="{{request.path}}?page=1">Trang đầu</a>
 
         {% for i in page_obj.paginator.page_range %}
             {% if page_obj.number == i %}
@@ -25,9 +25,9 @@ Thong bao
             {% endif %}
         {% endfor %}
 
-        <a href="{{request.path}}?page={{page_obj.paginator.num_pages}}">Trang cuoi</a>
+        <a href="{{request.path}}?page={{page_obj.paginator.num_pages}}">Trang cuối</a>
         {% if page_obj.has_next %}
-            <a href="{{request.path}}?page={{page_obj.next_page_number}}">Tiep theo</a>
+            <a href="{{request.path}}?page={{page_obj.next_page_number}}">Tiếp theo</a>
         {% endif %}
 </div>
 

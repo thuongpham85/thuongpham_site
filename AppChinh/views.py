@@ -11,7 +11,15 @@ def index(request):
     return render(request, "pages/TrangChu.html", {'TB':Data})
 
 def contact(request):
-    return render(request, "pages/Lienhe.html")
+    from .forms import formLienHe
+    formlh = formLienHe()
+    if request.method == "POST":
+        formlh = formLienHe(request.POST)
+        if formlh.is_valid():
+            formlh.goiThongDiep()
+            formlh.taoLienHe()
+            return HttpResponseRedirect("/")
+    return render(request, "pages/Lienhe.html", {'form': formlh})
 
 def dangKy(request):
     from .forms import formDangKy
@@ -39,7 +47,7 @@ class ThongBaoListView(ListView):
     queryset = ThongBao.objects.all().order_by('-NgayTB')
     template_name = 'pages/ThongBao.html'
     context_object_name='tbs'
-    paginate_by=2
+    paginate_by=5
 
 #Lop ThongBaoDetailView ke thua lop DetailView. Vi DetailView se truy van bang primarykey nen ta dua pk vao
 #khai bao model de biet se truy van tai dau

@@ -8,15 +8,13 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}" type="text/css" />
     <link rel="stylesheet" href="{% static 'tuTao.css' %}" type="text/css"/>
-    <!--<link rel="stylesheet" href="{% static 'js/bootstrap.min.js'%}" type="text/css" />-->
     <title>{% block tieude %}{% endblock %}</title>
 </head>
 
 <body>
     <div class="container-fluid">
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-            <a class="navbar-brand" href="/">Thuong Pham
-                <!--<img src="{% static 'muoi.jpg' %}" style="width:30px;"/>-->
+        <nav class="navbar navbar-expand-sm navbar-light sticky-top" style="background-color: skyblue;">
+            <a class="navbar-brand" href="/">Thương Phạm
             </a>
             <!-- Toggler/collapsibe Button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -26,10 +24,10 @@
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Trang chu</a>
+                        <a class="nav-link" href="/">Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/ThongBao">Thong bao</a>
+                        <a class="nav-link" href="/ThongBao">Thông báo</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="/MonHoc" id="navbardrop" data-toggle="dropdown">
@@ -42,20 +40,24 @@
                         </div>                      
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/lienhe">Lien he</a>
+                        <a class="nav-link" href="/lienhe">Liên hệ</a>
                     </li>
                 </ul>
             </div>
             <ul class="navbar-nav ml-auto">
                 {% if request.session.username %}
                 <li class="nav-item">
-                    <a style="color:darkgray;">Xin chao {{request.session.username}}</a>|
-                    <a style="color: darkgray;" href="{% url 'Logout' %}">Dang xuat</a>                    
+                    <a class="nav-link">Xin chào {{request.session.username}}</a>                        
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'Logout' %}">Đăng xuất</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a style="color:darkgray;" href="{% url 'Dangky' %}">Dang ky</a>|
-                    <a style="color:darkgray;" href="{% url 'Dangnhap' %}">Dang nhap</a>
+                    <a class="nav-link" href="{% url 'Dangky' %}">Đăng ký</a>    
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'Dangnhap' %}">Đăng nhập</a>
                 </li>
                 {% endif %}
             </ul>
@@ -72,16 +74,18 @@
             </div>
             <div class="col-sm-2">
                 <div>
-                    <p>Cac thong bao moi nhat:</p>
+                    <p><b>Các thông báo mới nhất:</b></p>
                     {% for t in tb %}
                         <p><a href="{% url 'tbct' t.id %}">{{t.TieuDeTB}}</a></p>
                     {% endfor %}
                 </div>
             </div>
         </div>
-        <div class="footer">
-            <center><a style="color:darkgray;" href="">Facebook</a>|<a style="color:darkgray;" href="">Gmail</a></center>
-        </div> 
+        <div class="row footer text-center text-dark" style="background-color: skyblue;">
+            <div class="col">
+                <p>Trang web thuộc về Thương Phạm</p>
+            </div>    
+        </div>  
     </div>
     <script src="{% static 'js/jquery.min.js'%}"></script>
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>-->

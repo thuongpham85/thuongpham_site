@@ -1,12 +1,41 @@
 {% extends "pages/Base.html" %}
 
 {% block tieude %}
-Lien he
+Liên hệ
 {% endblock %}
 
 {% block noidung %}
-<center><h2>Thong tin lien he:</h2>
-<h4>Ho va ten: Pham Thi Minh Thuong</h4>
-<h4>Cong tac tai: Khoa CNTT, truong DH Pham Van Dong</h4>
-</center>
+<!--<table>-->
+    <p><b>Liên hệ</b></p>
+    <p>Trang web được xây dựng bởi Phạm Thị Minh Thương, giảng viên khoa CNTT trường ĐH Phạm Văn Đồng, Quảng Ngãi. Cảm ơn bạn đã ghé thăm và quan tâm đến trang web!!!</p>
+    <p>Nếu bạn muốn liên hệ với tôi thì hãy điền đầy đủ thông tin bên dưới. </p>
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td><label>Tên của bạn</label></td>
+                <td>{{form.TenBanLH}}<label style="color: red;">  *   </label></td>
+            </tr>
+            <tr>
+                <td><label>Email của bạn</label></td>
+                <td>{{form.EmailBanLH}}<label style="color: red;">  *   </label></td>
+            </tr>
+            <tr>
+                <td><label>Tiêu đề</label></td>
+                <td>{{form.TieuDeLH}}<label style="color: red;">  *   </label></td>
+            </tr>
+            <tr>
+                <td><label>Thông điệp</label></td>
+                <td>{{form.ThongDiepLH}}<label style="color: red;">  *   </label></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Gởi liên hệ"/>
+                    <input type="hidden" name="next" value="/"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+<!--/table>-->
+
 {% endblock %}
