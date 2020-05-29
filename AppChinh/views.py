@@ -10,6 +10,9 @@ def index(request):
     Data = ThongBao.objects.all().order_by('-NgayTB')[:1]
     return render(request, "pages/TrangChu.html", {'TB':Data})
 
+def error(request, exception):
+    return render(request, 'pages/error.html', {'message': exception})
+    
 def contact(request):
     from .forms import formLienHe
     formlh = formLienHe()

@@ -82,14 +82,13 @@ class formLienHe(forms.Form):
         tieude = ten + self.cleaned_data.get("TieuDeLH")
         thongdiep = self.cleaned_data.get("ThongDiepLH")
         from_email = self.cleaned_data.get("EmailBanLH")
+        thongdiep = from_email + "_" + thongdiep
         if tieude and thongdiep and from_email:
             try:
-                send_mail(tieude, thongdiep, from_email, ['ptmthuong85@gmail.com'], fail_silently=False)
+                kq = send_mail(tieude, thongdiep, 'ptmthuong85@gmail.com', ['ptmthuong85@gmail.com'], fail_silently=False)
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
-            except ConnectionRefusedError:
-                raise forms.ValidationError("Khong ket noi duoc")
-            return HttpResponseRedirect('/lienhe/')
+            return HttpResponseRedirect('/')
         else:
             return HttpResponse('Make sure all fields are entered and valid.')
     def taoLienHe(self):
