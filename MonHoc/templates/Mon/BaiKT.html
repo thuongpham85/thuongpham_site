@@ -1,0 +1,76 @@
+{% extends 'Chinh/Base.html' %}
+
+{% block tieude %}
+Bai kiem tra
+{% endblock %}
+
+{% block noidung %}
+<label>Thoi gian lam bai: 2 phut </label>
+<br>
+<label id="demo" style="border-style: solid; font-size: 20px;"></label>
+<!--countdown timer by javascript-->
+<script>
+    // Set the date we're counting down to
+    var countDownDate = new Date().getTime() + 2*60*1000; //getTime tra ve milisecond nen 2 phut=2*60*1000 milisecond
+    
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+    
+      // Get today's date and time
+      var now = new Date().getTime();
+        
+      // Find the distance between now and the count down date
+      var distance = countDownDate - now;
+        
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+      // Output the result in an element with id="demo"
+      document.getElementById("demo").innerHTML = hours+":"+minutes+":"+seconds;
+        
+      // If the count down is over, write some text 
+      if (distance < 0) {
+        clearInterval(x);
+        //document.getElementById("demo").innerHTML = "EXPIRED";
+        document.getElementsByTagName('form')[0].submit()
+      }
+    }, 1000);
+    </script>
+
+<br>
+<label>Bat dau lam kiem tra nhe!</label>
+<form action="{% url 'ShowKQ' idlop=idlop idmon=idmon idbai=idbai %}" method="POST">
+    {% csrf_token %}
+    {% for ch in chs %}
+        <p><b>Câu hỏi thứ {{forloop.counter}}/{{tongch}}</b></p>
+        <p>{{ch.cauhoi}}</p>
+        {% if ch.hinh is not None %}
+        <img src="{{ch.hinh.url}}">
+        {% endif %}
+        <div>
+        {% for key, value in ch.traloi.items %}
+            {% if key == 'a'%}
+                <input type="radio" name="{{ch.stt}}" value="a_{{forloop.counter}}">
+            {% else %}
+                <input type="radio" name="{{ch.stt}}" value="{{ch.stt}}_{{forloop.counter}}">
+            {% endif %}
+            {% if forloop.counter == 1 %}
+                <label>A.</label>
+            {% elif forloop.counter == 2 %}
+                <label>B.</label>
+            {% elif forloop.counter == 3 %}
+                <label>C.</label>
+            {% else %}
+                <label>D.</label>
+            {% endif %}
+            <label for="{{ch.stt}}_{{forloop.counter}}">{{value}}</label><br>
+        {% endfor %}
+        </div>
+    {% endfor%}
+    <input type="submit" value="Nop bai">
+    <input type="hidden" name="next" value="/">
+</form>
+{% endblock %}
